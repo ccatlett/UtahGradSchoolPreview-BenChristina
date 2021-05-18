@@ -1,5 +1,5 @@
-%%% Algorithm 2
-%% Initial Parameters
+%% Algorithm 2
+
 function [time, A] = algorithm2(t0,k, n0)
 A = [n0];
 time = [t0];
