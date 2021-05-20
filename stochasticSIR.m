@@ -2,13 +2,12 @@
 % S + I -> 2I 
 % I -> 0
 
-function [time, S, I] = stochasticSIR(t0, t_final, delta_t, k1, k2, n0, m0)
-timespan = [t0:delta_t:t_final];
-S = [n0, zeros(1, (length(timespan) -1))];
-I = [m0, zeros(1, (length(timespan) -1))];
+function [time, S, I] = stochasticSIR(t0, num_iter, k1, k2, n0, m0)
+S = [n0, zeros(1, (num_iter - 1))];
+I = [m0, zeros(1, (num_iter - 1))];
 time = [t0];
 
-    for i = [2:length(timespan)]
+    for i = [2:num_iter]
         %% Generate 2 randomly distributed numbers 
         r1 = rand(1,1);
         r2 = rand(1,1);
@@ -26,11 +25,15 @@ time = [t0];
             if r2 < alpha1/alpha0
                S(i) = S(i-1) - 1;
                I(i) = I(i-1) + 1;
-            else
-               S(i) = S(i-1);
-               I(i) = I(i-1) - 1;
+            elseif I(i-1) ==0
+                    S(i) = S(i-1);
+                    I(i) = 0;
+                   
+              else
+                 S(i) = S(i-1);
+                 I(i) = I(i-1) - 1;
+                
+                    
             end
     end
 end
-
-
