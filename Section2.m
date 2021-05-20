@@ -1,4 +1,4 @@
-% Erban et al. Figure 2.1
+% Replication of Erban et al. Figure 2.1
 % Author(s): Ben & Christina
 % Date: 5/17/21
 % Desc: Implementation of Alg 1 from to recreate Fig 2.1a,b from Erban et
@@ -19,8 +19,8 @@ k = 0.1;
 n0 = 20;
 
 % Calc 2 runs
-A1 = degradation(t0, t_final, delta_t, k, n0);
-A2 = degradation(t0, t_final, delta_t, k, n0); 
+A1 = algorithm1(t0, t_final, delta_t, k, n0);
+A2 = algorithm1(t0, t_final, delta_t, k, n0); 
 
 % Plot
 plot(timespan,[A1; A2]);
@@ -32,7 +32,7 @@ A_all = zeros(10, (length(t0:delta_t:t_final)));
 
 % Calc 10 runs
 for i = 1:10
-    A_all(i, :) = degradation(t0, t_final, delta_t, k, n0);
+    A_all(i, :) = algorithm1(t0, t_final, delta_t, k, n0);
 end
 
 % Calc means
