@@ -15,7 +15,6 @@ time = [t0];
         alpha0 = A(i-1)*k1 + k2;
         tau = (1/alpha0)*log(1/r1);
          time(i) = time(i-1) + tau;
-        
 
         % Calc new state
             if r2 < k2/alpha0
