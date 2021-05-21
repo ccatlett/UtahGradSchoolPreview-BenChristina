@@ -10,7 +10,7 @@
 %% Iv -> R
 %% Parameter initialization
 
-function [time, Su, Sv, Iu, Iv, R, M] = stochasticSIRVM(t0, num_iter, k1, k2, k3, k4, k5, k6, k7, k8, n0, m0, p0)
+function [time, Su, Sv, Iu, Iv, R, M] = StochasticSIRVM(t0, num_iter, k1, k2, k3, k4, k5, k6, k7, k8, n0, m0, p0)
 Su = [n0, zeros(1, (num_iter - 1))];
 Sv = [n0, zeros(1, (num_iter - 1))];
 Iu = [m0, zeros(1, (num_iter - 1))];
@@ -107,11 +107,7 @@ time = [t0];
                 Iu(i) = Iu(i-1);
                 Sv(i) = Sv(i-1);
                 Su(i) = Su(i-1);
-                M(i) = M(i-1);
-               
-            
-                
-                    
+                M(i) = M(i-1);     
             end
     end
 end

@@ -11,10 +11,11 @@ init_conds = [S_u_i; S_v_i; I_u_i; I_v_i; R_i; M_i];
 [t, ode_out] = ode45(@(m,y) vax_sys(m, y), tspan, init_conds);
 
 function vec_out = vax_sys(t_in, vec_in)
+beta_u = 0.15;
+beta_v = 0.05;
 r =.7;
 N = 1000;
-lambda = .5;
-beta = .1;
+lambda = 1;
 gamma_u = .6;
 gamma_v = .95;
 mu_u = .01;
@@ -27,10 +28,10 @@ I_v = vec_in(4);
 R = vec_in(5);
 M = vec_in(6);
 
-dS_u = -beta*(I_u + I_v)*S_u - r*S_u*(1-S_u/N);
-dS_v = r*S_u*(1-S_u/N)-lambda*beta*(I_u + lambda*I_v)*S_v;
-dI_u = beta*(I_u + I_v)*S_u-(gamma_u + mu_u)*I_u;
-dI_v = lambda*beta*(I_u + lambda*I_v)*S_v-(gamma_v + mu_v)*I_v;
+dS_u = -(beta_u*I_u + beta_v*I_v)*S_u - r*S_u*(1-S_u/N);
+dS_v =  r*S_u*(1-S_u/N)-lambda*beta(I_u + lambda*I_v)*S_v;
+dI_u = (beta_u*I_u + beta_v*I_v)*S_u-(gamma_u + mu_u)*I_u;
+dI_v = lambda*beta(I_u + lambda*I_v)*S_v-(gamma_v + mu_v)*I_v;
 dR = gamma_u*I_u+gamma_v*I_v;
 dM = mu_u*I_u+mu_v*I_v;
 
